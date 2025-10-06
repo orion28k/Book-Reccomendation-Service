@@ -10,27 +10,19 @@ public class Books
     [Required]
     public string Title { get; set; } = string.Empty;
 
-    [Required]
     public string? Author { get; set; }
 
-    [Required]
-    public string Genre { get; set; } = string.Empty;
+    public string? Genre { get; set; }
 
-    [Required]
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; }
 
-    [Required]
-    public string Publisher { get; set; } = string.Empty;
+    public string? Publisher { get; set; }
 
-    [Required]
-    public string ThumbnailUrl { get; set; } = string.Empty;
+    public string? ThumbnailUrl { get; set; }
 
-    [Required]
     public DateTime? PublishedDate { get; set; }
 
-    [Required]
-    public int PageCount { get; set; }
+    public int? PageCount { get; set; }
 
-    [Required]
-    public float AverageRating { get; set; }
+    public float? AverageRating { get; set; }
 }

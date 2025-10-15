@@ -4,5 +4,5 @@ COPY . .
 WORKDIR /app/WebApplication1
 RUN dotnet publish WebApplication1.csproj -c Release -o /app/out
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "out/WebApplication1.dll"]

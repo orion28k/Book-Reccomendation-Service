@@ -1,0 +1,118 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "BookRec.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "BookRec.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BookRec.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookRec.Application.dll": {}
+        }
+      },
+      "BookRec.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/BookRec.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookRec.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BookRec.Application/1.0.0": {
+      "type": "project",
+      "path": "../BookRec.Application/BookRec.Application.csproj",
+      "msbuildProject": "../BookRec.Application/BookRec.Application.csproj"
+    },
+    "BookRec.Domain/1.0.0": {
+      "type": "project",
+      "path": "../BookRec.Domain/BookRec.Domain.csproj",
+      "msbuildProject": "../BookRec.Domain/BookRec.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "BookRec.Application >= 1.0.0",
+      "BookRec.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/briana/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
+      "projectName": "BookRec.Infrastructure",
+      "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
+      "packagesPath": "/Users/briana/.nuget/packages/",
+      "outputPath": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/briana/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj": {
+              "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj"
+            },
+            "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj": {
+              "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

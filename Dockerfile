@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0
-WORKDIR /app
+WORKDIR /src
 COPY . .
-WORKDIR /app/WebApplication1
+WORKDIR /src/BookRec.api
 RUN dotnet publish WebApplication1.csproj -c Release -o /app/out
 WORKDIR /app
 EXPOSE 8080

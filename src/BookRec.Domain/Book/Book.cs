@@ -9,28 +9,27 @@ namespace BookRec.Domain.BookModel;
 /// 
 public class Book : Entity
 {
-    /// <value>Entity Identifier</value>
-    public Guid Id { get; private set; } = Guid.NewGuid;
-
     /// Model Properties
-    public string Title { get; private set; }
-    public string Author { get; private set; }
-    public string Description { get; private set; }
+    public string Title { get; private set; } = string.Empty;
+    public string Author { get; private set; } = string.Empty;
+    public string Description { get; private set; } = string.Empty;
+    public string Genre { get; private set; } = string.Empty;
     public DateTime PublishDate { get; private set; }
 
     /// <summary> 
     /// Private Constructor for Entity Framework and deserialization tools
     /// </summary>
-    private Book() { }
+    private Book(Guid id) : base(id) { }
 
     /// <summary> 
     /// Public Book Constructor 
     /// </summary>
-    public Book(string title, string author, string description, DateTime publishDate)
+    public Book(Guid id, string title, string author, string description, string genre, DateTime publishDate) : base(id)
     {
         setTitle(title);
         setAuthor(author);
         setDescription(description);
+        setGenre(genre);
         PublishDate = publishDate;
     }
 
@@ -57,18 +56,25 @@ public class Book : Entity
         Author = author;
     }
 
+    private void setGenre(string genre)
+    {
+        if (string.IsNullOrWhiteSpace(genre))
+        {
+            throw new ArgumentException("Genre can not be empty.");
+        }
+        Genre = genre;
+    }
+
     private void setDescription(string description)
     {
         if (string.IsNullOrWhiteSpace(description))
         {
             throw new ArgumentException("Description can not be empty.");
         }
-
         if (description.Length > 800)
         {
             throw new ArgumentException("Description can not be longer than 800 characters.");
         }
-
         Description = description;
     } 
 }

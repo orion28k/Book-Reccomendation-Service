@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Net.Mail;
+using Microsoft.VisualBasic;
 
 namespace BookRec.Domain.UserModel;
 
@@ -11,14 +12,48 @@ public class User : Entity
     public string FirstName { get; private set; } = string.Empty;
     public string LastName { get; private set; } = string.Empty;
     public string Email { get; private set; } = string.Empty;
+    private readonly List<string> _preferredGenres = new();
+    public IReadOnlyCollection<string> PreferredGenres => _preferredGenres.AsReadOnly();
     public DateTime createdAt { get; private set; } = DateTime.UtcNow;
 
-    public User(Guid id, string username, string firstName, string lastName, string email, DateTime createdAt) : base(id)
+
+    public User(Guid id, string username, string firstName, string lastName, string email, IEnumerable<string> preferredGenre, DateTime createdAt) : base(id)
     {
         setUserName(username);
         setFirstName(firstName);
         setLastName(lastName);
         updateEmail(email);
+        setPreferredGenre(preferredGenre);
+    }
+
+    public void setPreferredGenre(IEnumerable<string> preferredGenre)
+    {
+        if (preferredGenre == null || !preferredGenre.Any())
+        {
+            throw new ArgumentException("Users must have at least 1 Genre.");
+        }
+
+        foreach (var genre in preferredGenre)
+        {
+            addPreferredGenre(genre);
+        }
+    }
+    
+    public void addPreferredGenre(string genre)
+    {
+        if (string.IsNullOrWhiteSpace(genre))
+        {
+            throw new ArgumentException("Genre can not be empty.");
+        }
+
+        genre = genre.Trim();
+
+        if (_preferredGenres.Contains(genre, StringComparer.OrdinalIgnoreCase))
+        {
+            throw new ArgumentException("Can not add Genre: " + genre + ". It already exists.");
+        }
+
+        _preferredGenres.Add(genre);
     }
 
     public void setUserName(string username)

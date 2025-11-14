@@ -1,8 +1,22 @@
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Add Swagger/OpenAPI documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Library Reccommendation Service",
+        Version = "v1",
+        Description = "API for reccomending books to the user based off of books owned.",
+    });
+}
+);
 
 var app = builder.Build();
 
@@ -32,6 +46,15 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+// Enable Swagger API
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Library Reccommendation Service");
+    c.RoutePrefix = "swagger";
+}
+);
 
 app.Run();
 

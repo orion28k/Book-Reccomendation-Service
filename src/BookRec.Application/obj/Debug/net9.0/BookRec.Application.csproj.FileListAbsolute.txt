@@ -1,0 +1,16 @@
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/bin/Debug/net9.0/BookRec.Application.deps.json
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/bin/Debug/net9.0/BookRec.Application.dll
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/bin/Debug/net9.0/BookRec.Application.pdb
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/bin/Debug/net9.0/BookRec.Domain.dll
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/bin/Debug/net9.0/BookRec.Domain.pdb
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.csproj.AssemblyReference.cache
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.AssemblyInfoInputs.cache
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.AssemblyInfo.cs
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.csproj.CoreCompileInputs.cache
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.sourcelink.json
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec..0E495DBD.Up2Date
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.dll
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/refint/BookRec.Application.dll
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/BookRec.Application.pdb
+/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/Debug/net9.0/ref/BookRec.Application.dll

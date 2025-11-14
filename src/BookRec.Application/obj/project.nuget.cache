@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KEKSFOPaTIk=",
+  "dgSpecHash": "zEF6kGH1s5E=",
   "success": true,
-  "projectFilePath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj",
+  "projectFilePath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

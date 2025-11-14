@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/briana/SoftwareDevProject/src/BookRec.Api/BookRec.Api.csproj": {}
+    "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj": {}
   },
   "projects": {
-    "/Users/briana/SoftwareDevProject/src/BookRec.Api/BookRec.Api.csproj": {
+    "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/briana/SoftwareDevProject/src/BookRec.Api/BookRec.Api.csproj",
+        "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
         "projectName": "BookRec.Api",
-        "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Api/BookRec.Api.csproj",
+        "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
         "packagesPath": "/Users/briana/.nuget/packages/",
-        "outputPath": "/Users/briana/SoftwareDevProject/src/BookRec.Api/obj/",
+        "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/briana/.nuget/NuGet/NuGet.Config"
@@ -27,11 +27,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj": {
-                "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj"
+              "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj": {
+                "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj"
               },
-              "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
-                "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj"
+              "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
+                "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj": {
+    "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj",
+        "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
         "projectName": "BookRec.Application",
-        "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj",
+        "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
         "packagesPath": "/Users/briana/.nuget/packages/",
-        "outputPath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/obj/",
+        "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/briana/.nuget/NuGet/NuGet.Config"
@@ -103,8 +103,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj": {
-                "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj"
+              "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj": {
+                "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj"
               }
             }
           }
@@ -144,14 +144,14 @@
         }
       }
     },
-    "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj": {
+    "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj",
+        "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj",
         "projectName": "BookRec.Domain",
-        "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj",
+        "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj",
         "packagesPath": "/Users/briana/.nuget/packages/",
-        "outputPath": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/obj/",
+        "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/briana/.nuget/NuGet/NuGet.Config"
@@ -204,14 +204,14 @@
         }
       }
     },
-    "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
+    "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
+        "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
         "projectName": "BookRec.Infrastructure",
-        "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
+        "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj",
         "packagesPath": "/Users/briana/.nuget/packages/",
-        "outputPath": "/Users/briana/SoftwareDevProject/src/BookRec.Infrastructure/obj/",
+        "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/briana/.nuget/NuGet/NuGet.Config"
@@ -227,11 +227,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj": {
-                "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Application/BookRec.Application.csproj"
+              "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj": {
+                "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj"
               },
-              "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj": {
-                "projectPath": "/Users/briana/SoftwareDevProject/src/BookRec.Domain/BookRec.Domain.csproj"
+              "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj": {
+                "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj"
               }
             }
           }

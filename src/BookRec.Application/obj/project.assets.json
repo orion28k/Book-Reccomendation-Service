@@ -27,32 +27,33 @@
     ]
   },
   "packageFolders": {
-    "/Users/andred/.nuget/packages/": {}
+    "/Users/briana/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
+      "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
       "projectName": "BookRec.Application",
-      "projectPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
-      "packagesPath": "/Users/andred/.nuget/packages/",
-      "outputPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/obj/",
+      "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj",
+      "packagesPath": "/Users/briana/.nuget/packages/",
+      "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/andred/.nuget/NuGet/NuGet.Config"
+        "/Users/briana/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj": {
-              "projectPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj"
+            "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj": {
+              "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/BookRec.Domain.csproj"
             }
           }
         }
@@ -88,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

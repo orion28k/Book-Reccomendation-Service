@@ -8,5 +8,6 @@ public sealed record CreateUserDto(
     string FirstName,
     string LastName,
     string Email,
-    IEnumerable<string> PreferredGenres
+    IReadOnlyCollection<string> PreferredGenres,
+    DateTime CreatedAt
 );

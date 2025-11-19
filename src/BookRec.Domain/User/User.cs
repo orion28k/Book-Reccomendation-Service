@@ -56,6 +56,21 @@ public class User : Entity
         _preferredGenres.Add(genre);
     }
 
+    public void updatePreferredGenres(IEnumerable<string> preferredGenres)
+    {
+        if(preferredGenres == null || !preferredGenres.Any())
+        {
+            throw new ArgumentException("Users must have at least 1 Genre.");
+        }
+
+        _preferredGenres.Clear();
+
+        foreach (var genre in preferredGenres)
+        {
+            addPreferredGenre(genre);
+        }
+    }
+
     public void setUserName(string username)
     {
         if (string.IsNullOrWhiteSpace(username))

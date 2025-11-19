@@ -3,7 +3,7 @@ using BookRec.Application.Books.Dtos;
 namespace BookRec.Application.Books.Interface;
 
 /// <summary>
-/// This Service Interface implements but not defines the functions of the Application Layer.
+/// This Book Service Interface implements but not defines the functions of the Application Layer.
 /// </summary>
 public interface IBookService
 {

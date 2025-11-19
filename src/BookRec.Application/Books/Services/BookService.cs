@@ -4,6 +4,9 @@ using BookRec.Domain.BookModel;
 
 namespace BookRec.Application.Books.Services;
 
+/// <summary>
+/// This Book Service defines the implemented functions from the Book Service Interface
+/// </summary>
 public sealed class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;

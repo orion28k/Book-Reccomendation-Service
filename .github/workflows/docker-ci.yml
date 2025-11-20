@@ -1,0 +1,34 @@
+name: Docker Build Test
+
+# When to run: on push and pull requests
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-docker:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Get the code
+      - uses: actions/checkout@v4
+      
+      # Build the Docker image
+      - name: Build Docker image
+        run: docker build -t bookrec-app .
+      
+      # Start containers
+      - name: Start containers
+        run: docker-compose up -d
+      
+      # Wait for app to start
+      - name: Wait for app
+        run: sleep 10
+      
+      # Check if website responds
+      - name: Test website
+        run: curl http://localhost:8080
+      
+      # Stop containers
+      - name: Stop containers
+        run: docker-compose down

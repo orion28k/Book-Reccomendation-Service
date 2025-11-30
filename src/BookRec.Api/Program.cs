@@ -1,5 +1,8 @@
-var builder = WebApplication.CreateBuilder(args);
+using BookRec.Infrastructure.Data;
+using BookRec.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -17,6 +20,17 @@ builder.Services.AddSwaggerGen(c =>
     });
 }
 );
+
+// Configure Postgres DbContext and DI for repositories
+var connString = builder.Configuration.GetConnectionString("Default")
+                  ?? builder.Configuration["ConnectionStrings:Default"]
+                  ?? "Host=localhost;Port=5432;Database=bookrec;Username=postgres;Password=postgres";
+
+builder.Services.AddDbContext<BookRecDbContext>(options =>
+    options.UseNpgsql(connString));
+
+builder.Services.AddScoped<IBookRepository, EfBookRepository>();
+builder.Services.AddScoped<IUserRepository, EfUserRepository>();
 
 var app = builder.Build();
 
@@ -46,6 +60,81 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+// Minimal Book endpoints (using repository directly for now)
+app.MapPost("/books", async (IBookRepository repo, Book book) =>
+{
+    if (book.Id == Guid.Empty) book.Id = Guid.NewGuid();
+    await repo.AddBook(book);
+    return Results.Created($"/books/{book.Id}", new { id = book.Id });
+});
+
+app.MapGet("/books", async (IBookRepository repo) =>
+{
+    var books = await repo.GetAllAsync();
+    return Results.Ok(books);
+});
+
+app.MapGet("/books/{id:guid}", async (IBookRepository repo, Guid id) =>
+{
+    var book = await repo.GetByIdAsync(id);
+    return book is null ? Results.NotFound() : Results.Ok(book);
+});
+
+app.MapGet("/books/by-title/{title}", async (IBookRepository repo, string title) =>
+{
+    var book = await repo.GetByTitleAsync(title);
+    return book is null ? Results.NotFound() : Results.Ok(book);
+});
+
+app.MapGet("/books/by-author/{author}", async (IBookRepository repo, string author) =>
+{
+    var books = await repo.GetByAuthor(author);
+    return Results.Ok(books);
+});
+
+app.MapPatch("/books/{id:guid}", async (IBookRepository repo, Guid id, Dictionary<string, object> updates) =>
+{
+    var existing = await repo.GetByIdAsync(id);
+    if (existing is null) return Results.NotFound();
+    
+    // Apply partial updates based on dictionary keys
+    foreach (var (key, value) in updates)
+    {
+        switch (key.ToLower())
+        {
+            case "title":
+                existing.Title = value?.ToString() ?? existing.Title;
+                break;
+            case "author":
+                existing.Author = value?.ToString() ?? existing.Author;
+                break;
+            case "genre":
+                existing.Genre = value?.ToString() ?? existing.Genre;
+                break;
+            case "description":
+                existing.Description = value?.ToString() ?? existing.Description;
+                break;
+            case "publishdate":
+                if (value is DateTime dt)
+                    existing.PublishDate = dt;
+                else if (DateTime.TryParse(value?.ToString(), out var parsed))
+                    existing.PublishDate = parsed;
+                break;
+        }
+    }
+    
+    await repo.UpdateBook(existing);
+    return Results.NoContent();
+});
+
+app.MapDelete("/books/{id:guid}", async (IBookRepository repo, Guid id) =>
+{
+    var existing = await repo.GetByIdAsync(id);
+    if (existing is null) return Results.NotFound();
+    await repo.DeleteBook(existing);
+    return Results.NoContent();
+});
 
 // Enable Swagger API
 app.UseSwagger();

@@ -93,13 +93,38 @@ app.MapGet("/books/by-author/{author}", async (IBookRepository repo, string auth
     return Results.Ok(books);
 });
 
-app.MapPut("/books/{id:guid}", async (IBookRepository repo, Guid id, Book book) =>
+app.MapPatch("/books/{id:guid}", async (IBookRepository repo, Guid id, Dictionary<string, object> updates) =>
 {
     var existing = await repo.GetByIdAsync(id);
     if (existing is null) return Results.NotFound();
     
-    book.Id = id; // Ensure ID matches route
-    await repo.UpdateBook(book);
+    // Apply partial updates based on dictionary keys
+    foreach (var (key, value) in updates)
+    {
+        switch (key.ToLower())
+        {
+            case "title":
+                existing.Title = value?.ToString() ?? existing.Title;
+                break;
+            case "author":
+                existing.Author = value?.ToString() ?? existing.Author;
+                break;
+            case "genre":
+                existing.Genre = value?.ToString() ?? existing.Genre;
+                break;
+            case "description":
+                existing.Description = value?.ToString() ?? existing.Description;
+                break;
+            case "publishdate":
+                if (value is DateTime dt)
+                    existing.PublishDate = dt;
+                else if (DateTime.TryParse(value?.ToString(), out var parsed))
+                    existing.PublishDate = parsed;
+                break;
+        }
+    }
+    
+    await repo.UpdateBook(existing);
     return Results.NoContent();
 });
 

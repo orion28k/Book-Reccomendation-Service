@@ -16,3 +16,21 @@
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/refint/BookRec.Infrastructure.dll
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.pdb
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/ref/BookRec.Infrastructure.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Infrastructure.deps.json
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Infrastructure.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Infrastructure.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Application.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Domain.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Domain.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/bin/Debug/net9.0/BookRec.Application.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.csproj.AssemblyReference.cache
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.AssemblyInfoInputs.cache
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.AssemblyInfo.cs
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.sourcelink.json
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec..A77F25CD.Up2Date
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/refint/BookRec.Infrastructure.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/BookRec.Infrastructure.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/obj/Debug/net9.0/ref/BookRec.Infrastructure.dll

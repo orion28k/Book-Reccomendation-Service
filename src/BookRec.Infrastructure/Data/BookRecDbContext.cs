@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookRec.Infrastructure.Data;
 
-// TODO: Replace these with actual domain namespaces/classes if different
 public class Book
 {
     public Guid Id { get; set; }

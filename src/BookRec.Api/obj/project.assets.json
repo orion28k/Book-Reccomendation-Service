@@ -3342,35 +3342,36 @@
     ]
   },
   "packageFolders": {
-    "/Users/andred/.nuget/packages/": {}
+    "/Users/briana/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
+      "projectUniqueName": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
       "projectName": "BookRec.Api",
-      "projectPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
-      "packagesPath": "/Users/andred/.nuget/packages/",
-      "outputPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Api/obj/",
+      "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/BookRec.Api.csproj",
+      "packagesPath": "/Users/briana/.nuget/packages/",
+      "outputPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/andred/.nuget/NuGet/NuGet.Config"
+        "/Users/briana/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj": {
-              "projectPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj"
+            "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj": {
+              "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Application/BookRec.Application.csproj"
             },
-            "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
-              "projectPath": "/Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj"
+            "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj": {
+              "projectPath": "/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Infrastructure/BookRec.Infrastructure.csproj"
             }
           }
         }
@@ -3433,7 +3434,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

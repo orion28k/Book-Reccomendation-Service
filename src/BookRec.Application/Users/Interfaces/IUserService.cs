@@ -2,6 +2,7 @@ using BookRec.Application.Users.Dtos;
 
 namespace BookRec.Application.Users.Interface;
 
+// TODO: Add Update User
 public interface IUserService
 {
     Task<UserDto?> GetByIdAsync(Guid id);

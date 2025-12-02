@@ -8,13 +8,13 @@ namespace BookRec.Domain.UserModel;
 /// <summary>description</summary>
 public class User : Entity
 {
-    public string Username { get; private set; } = string.Empty;
-    public string FirstName { get; private set; } = string.Empty;
-    public string LastName { get; private set; } = string.Empty;
-    public string Email { get; private set; } = string.Empty;
+    public string Username { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
     private readonly List<string> _preferredGenres = new();
     public IReadOnlyCollection<string> PreferredGenres => _preferredGenres.AsReadOnly();
-    public DateTime createdAt { get; private set; } = DateTime.UtcNow;
+    public DateTime createdAt { get; set; } = DateTime.UtcNow;
 
 
     public User(Guid id, string username, string firstName, string lastName, string email, IEnumerable<string> preferredGenre, DateTime createdAt) : base(id)

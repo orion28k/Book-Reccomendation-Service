@@ -10,3 +10,15 @@
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/refint/BookRec.Domain.dll
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.pdb
 /Users/andred/Desktop/Computer_Science/Class/Software Design/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/ref/BookRec.Domain.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/bin/Debug/net9.0/BookRec.Domain.deps.json
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/bin/Debug/net9.0/BookRec.Domain.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/bin/Debug/net9.0/BookRec.Domain.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.AssemblyInfoInputs.cache
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.AssemblyInfo.cs
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.csproj.CoreCompileInputs.cache
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.sourcelink.json
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/refint/BookRec.Domain.dll
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/BookRec.Domain.pdb
+/Users/briana/SoftwareDevProject/Book-Reccomendation-Service/src/BookRec.Domain/obj/Debug/net9.0/ref/BookRec.Domain.dll

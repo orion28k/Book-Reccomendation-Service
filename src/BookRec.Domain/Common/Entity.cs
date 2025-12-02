@@ -7,7 +7,7 @@
     /// Unique id for all Entities. Only the Entity class can modify the id.
     /// </summary>
     /// <value>Entity Identifier</value>
-    public Guid Id { get; protected set; }
+    public Guid Id { get; set; }
 
     public Entity(Guid id)
     {

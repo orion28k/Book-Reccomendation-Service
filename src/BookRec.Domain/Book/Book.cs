@@ -10,11 +10,11 @@ namespace BookRec.Domain.BookModel;
 public class Book : Entity
 {
     /// Model Properties
-    public string Title { get; private set; } = string.Empty;
-    public string Author { get; private set; } = string.Empty;
-    public string Description { get; private set; } = string.Empty;
-    public string Genre { get; private set; } = string.Empty;
-    public DateTime PublishDate { get; private set; }
+    public string Title { get; set; } = string.Empty;
+    public string Author { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Genre { get; set; } = string.Empty;
+    public DateTime PublishDate { get; set; }
 
     /// <summary> 
     /// Private Constructor for Entity Framework and deserialization tools

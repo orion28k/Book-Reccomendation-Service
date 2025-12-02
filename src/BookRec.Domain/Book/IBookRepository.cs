@@ -9,8 +9,10 @@ public interface IBookRepository
 {
     Task<Book?> GetByIdAsync(Guid id);
     Task<Book?> GetByTitleAsync(string title);
-    Task<IReadOnlyList<Book?>> GetByAuthor(string author);
-    Task<IReadOnlyList<Book>> GetAllAsync();
-    Task AddBook(Book book);
-    Task DeleteBook(Book book);
+    Task<List<Book>> GetByAuthorAsync(string author);
+    Task<List<Book>> GetByGenreAsync(string genre);
+    Task<List<Book>> GetAllAsync();
+    Task AddAsync(Book book);
+    Task UpdateAsync(Book book);
+    Task DeleteAsync(Guid id);
 }

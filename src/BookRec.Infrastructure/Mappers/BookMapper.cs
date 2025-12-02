@@ -33,4 +33,9 @@ public static class BookMapper
             UpdatedAt = DateTime.UtcNow
         };
     }
+
+    public static List<Book> ToDomainList(IEnumerable<BookDBO> dbos)
+    {
+        return dbos.Select(ToDomain).ToList();
+    }
 }

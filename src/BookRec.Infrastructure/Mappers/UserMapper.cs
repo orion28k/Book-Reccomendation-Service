@@ -34,4 +34,9 @@ public static class UserMapper
             updatedAt = DateTime.UtcNow
         };
     }
+
+    public static List<User> ToDomainList(IEnumerable<UserDBO> dbos)
+    {
+        return dbos.Select(ToDomain).ToList();
+    }
 }

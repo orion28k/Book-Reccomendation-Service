@@ -10,8 +10,8 @@ public interface IUserRepository
     Task<User?> GetByIdAsync(Guid id);
     Task<User?> GetByEmailAsync(string email);
     Task<User?> GetByUserAsync(string username);
-    Task<IReadOnlyList<User>> GetByPreferredGenre(string genre);
-    Task AddUser(User user);
-    Task DeleteUser(User user);
-    Task UpdateUser(User user);
+    Task<List<User>> GetAllAsync();
+    Task AddAsync(User user);
+    Task DeleteAsync(Guid id);
+    Task UpdateAsync(User user);
 }

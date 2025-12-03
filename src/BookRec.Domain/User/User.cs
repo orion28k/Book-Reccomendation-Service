@@ -12,9 +12,14 @@ public class User : Entity
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    private readonly List<string> _preferredGenres = new();
-    public IReadOnlyCollection<string> PreferredGenres => _preferredGenres.AsReadOnly();
-    public DateTime createdAt { get; set; } = DateTime.UtcNow;
+    private List<string> _preferredGenres = new();
+    public List<string> PreferredGenres
+    {
+        get => _preferredGenres;
+        set => _preferredGenres = value ?? new();
+    }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
 
     public User(Guid id, string username, string firstName, string lastName, string email, IEnumerable<string> preferredGenre, DateTime createdAt) : base(id)

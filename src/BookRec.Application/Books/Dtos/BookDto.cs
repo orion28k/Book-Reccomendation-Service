@@ -9,6 +9,6 @@ public sealed record BookDto(
     string Title,
     string Author,
     string Description,
-    string Genre,
+    IReadOnlyCollection<string> Genre,
     DateTime PublishDate
 );

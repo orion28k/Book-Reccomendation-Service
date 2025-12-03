@@ -4,9 +4,10 @@ namespace BookRec.Application.Users.Dtos;
 /// This record creates a User Input DTO that will return information to the backend from the presentation layer.
 /// </summary>
 public sealed record UpdateUserDto(
-    string Username,
-    string FirstName,
-    string LastName,
-    string Email,
-    IEnumerable<string> PreferredGenres
+    string? Username,
+    string? FirstName,
+    string? LastName,
+    string? Email,
+    IEnumerable<string>? PreferredGenres,
+    DateTime UpdatedAt
 );

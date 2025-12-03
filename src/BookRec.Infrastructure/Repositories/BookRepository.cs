@@ -57,7 +57,7 @@ public class BookRepository : IBookRepository
 
         dbBook.Title = book.Title;
         dbBook.Author = book.Author;
-        dbBook.Genre = book.Genre;
+        dbBook.Genre = string.Join(",", book.Genres);
         dbBook.Description = book.Description;
         dbBook.PublishDate = book.PublishDate;
         dbBook.UpdatedAt = DateTime.UtcNow;

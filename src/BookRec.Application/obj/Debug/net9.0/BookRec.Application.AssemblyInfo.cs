@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookRec.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+896bed3e7c919af0670dfabbdd519079f96869d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5818fbe4cf943f98360a464991379d88fca6a813")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookRec.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookRec.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

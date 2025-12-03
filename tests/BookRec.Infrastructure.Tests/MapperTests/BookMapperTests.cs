@@ -18,7 +18,7 @@ public class BookMapperTests
             Title = "Test Book",
             Author = "Test Author",
             Description = "Test Description",
-            Genre = "Fiction",
+            Genre = "Fiction,Mystery",
             PublishDate = publishDate
         };
 
@@ -28,8 +28,28 @@ public class BookMapperTests
         Assert.Equal("Test Book", result.Title);
         Assert.Equal("Test Author", result.Author);
         Assert.Equal("Test Description", result.Description);
+        Assert.Equal(2, result.Genres.Count);
         Assert.Contains("Fiction", result.Genres);
+        Assert.Contains("Mystery", result.Genres);
         Assert.Equal(publishDate, result.PublishDate);
+    }
+
+    [Fact]
+    public void ToDomain_ShouldHandleSingleGenre()
+    {
+        var dbo = new BookDBO
+        {
+            Id = Guid.NewGuid(),
+            Title = "Test",
+            Author = "Author",
+            Description = "Description",
+            Genre = "Fiction"
+        };
+
+        var result = BookMapper.ToDomain(dbo);
+
+        Assert.Single(result.Genres);
+        Assert.Contains("Fiction", result.Genres);
     }
 
     [Fact]
@@ -37,7 +57,8 @@ public class BookMapperTests
     {
         var id = Guid.NewGuid();
         var publishDate = new DateTime(2023, 6, 15, 0, 0, 0, DateTimeKind.Utc);
-        var book = new Book(id, "Test Book", "Test Author", "Test Description", new[] { "Fiction" }, publishDate);
+        var book = new Book(id, "Test Book", "Test Author", "Test Description", 
+            new List<string> { "Fiction", "Mystery" }, publishDate);
 
         var result = BookMapper.ToDBO(book);
 
@@ -45,7 +66,7 @@ public class BookMapperTests
         Assert.Equal("Test Book", result.Title);
         Assert.Equal("Test Author", result.Author);
         Assert.Equal("Test Description", result.Description);
-        Assert.Equal("Fiction", result.Genre);
+        Assert.Equal("Fiction,Mystery", result.Genre);
         Assert.Equal(publishDate, result.PublishDate);
     }
 
@@ -53,7 +74,8 @@ public class BookMapperTests
     public void ToDBO_ShouldSetTimestamps()
     {
         var before = DateTime.UtcNow;
-        var book = new Book(Guid.NewGuid(), "Title", "Author", "Desc", new[] { "Genre" }, DateTime.UtcNow);
+        var book = new Book(Guid.NewGuid(), "Title", "Author", "Description", 
+            new List<string> { "Genre" }, DateTime.UtcNow);
 
         var result = BookMapper.ToDBO(book);
         var after = DateTime.UtcNow;
@@ -67,9 +89,9 @@ public class BookMapperTests
     {
         var dbos = new List<BookDBO>
         {
-            new BookDBO { Id = Guid.NewGuid(), Title = "Book 1" },
-            new BookDBO { Id = Guid.NewGuid(), Title = "Book 2" },
-            new BookDBO { Id = Guid.NewGuid(), Title = "Book 3" }
+            new BookDBO { Id = Guid.NewGuid(), Title = "Book 1", Author = "A", Description = "D", Genre = "Fiction" },
+            new BookDBO { Id = Guid.NewGuid(), Title = "Book 2", Author = "A", Description = "D", Genre = "Mystery" },
+            new BookDBO { Id = Guid.NewGuid(), Title = "Book 3", Author = "A", Description = "D", Genre = "Romance" }
         };
 
         var result = BookMapper.ToDomainList(dbos);

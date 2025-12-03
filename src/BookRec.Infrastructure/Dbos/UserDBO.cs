@@ -8,6 +8,7 @@ public class UserDBO
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PreferredGenres { get; set; } = string.Empty;
+    public string ReadBookIds { get; set; } = string.Empty;
     public DateTime createdAt { get; set; } = DateTime.UtcNow;
     public DateTime updatedAt { get; set; } = DateTime.UtcNow;
 }

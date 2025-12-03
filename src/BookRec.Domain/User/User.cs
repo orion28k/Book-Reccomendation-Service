@@ -18,6 +18,12 @@ public class User : Entity
         get => _preferredGenres;
         set => _preferredGenres = value ?? new();
     }
+    private List<Guid> _readBookIds = new();
+    public List<Guid> ReadBookIds
+    {
+        get => _readBookIds;
+        set => _readBookIds = value ?? new();
+    }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
@@ -43,7 +49,26 @@ public class User : Entity
             addPreferredGenre(genre);
         }
     }
-    
+
+    public void MarkBookAsRead(Guid bookId)
+    {
+        if (bookId == Guid.Empty) return;
+        if (!_readBookIds.Contains(bookId)) _readBookIds.Add(bookId);
+    }
+
+    public bool HasRead(Guid bookId) => _readBookIds.Contains(bookId);
+
+    public void UpdateReadBooks(IEnumerable<Guid> ids)
+    {
+        _readBookIds = ids?.Where(g => g != Guid.Empty).Distinct().ToList() ?? new List<Guid>();
+    }
+
+    public void UnmarkBookAsRead(Guid bookId)
+    {
+        if (bookId == Guid.Empty) return;
+        if (_readBookIds.Contains(bookId)) _readBookIds.Remove(bookId);
+    }
+
     public void addPreferredGenre(string genre)
     {
         if (string.IsNullOrWhiteSpace(genre))
@@ -63,7 +88,7 @@ public class User : Entity
 
     public void updatePreferredGenres(IEnumerable<string> preferredGenres)
     {
-        if(preferredGenres == null || !preferredGenres.Any())
+        if (preferredGenres == null || !preferredGenres.Any())
         {
             throw new ArgumentException("Users must have at least 1 Genre.");
         }

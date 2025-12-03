@@ -13,8 +13,15 @@ public class Book : Entity
     public string Title { get; set; } = string.Empty;
     public string Author { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public string Genre { get; set; } = string.Empty;
+    private List<string> _genres = new();
+    public List<string> Genres
+    {
+        get => _genres;
+        set => _genres = value ?? new();
+    }
     public DateTime PublishDate { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary> 
     /// Private Constructor for Entity Framework and deserialization tools
@@ -24,7 +31,7 @@ public class Book : Entity
     /// <summary> 
     /// Public Book Constructor 
     /// </summary>
-    public Book(Guid id, string title, string author, string description, string genre, DateTime publishDate) : base(id)
+    public Book(Guid id, string title, string author, string description, IEnumerable<string> genre, DateTime publishDate) : base(id)
     {
         setTitle(title);
         setAuthor(author);
@@ -56,13 +63,49 @@ public class Book : Entity
         Author = author;
     }
 
-    private void setGenre(string genre)
+    public void setGenre(IEnumerable<string> Genre)
+    {
+        if (Genre == null || !Genre.Any())
+        {
+            throw new ArgumentException("Users must have at least 1 Genre.");
+        }
+
+        foreach (var genre in Genre)
+        {
+            addGenre(genre);
+        }
+    }
+    
+    public void addGenre(string genre)
     {
         if (string.IsNullOrWhiteSpace(genre))
         {
             throw new ArgumentException("Genre can not be empty.");
         }
-        Genre = genre;
+
+        genre = genre.Trim();
+
+        if (_genres.Contains(genre, StringComparer.OrdinalIgnoreCase))
+        {
+            throw new ArgumentException("Can not add Genre: " + genre + ". It already exists.");
+        }
+
+        _genres.Add(genre);
+    }
+
+    public void updateGenres(IEnumerable<string> genres)
+    {
+        if(genres == null || !genres.Any())
+        {
+            throw new ArgumentException("Users must have at least 1 Genre.");
+        }
+
+        _genres.Clear();
+
+        foreach (var genre in genres)
+        {
+            addGenre(genre);
+        }
     }
 
     private void setDescription(string description)

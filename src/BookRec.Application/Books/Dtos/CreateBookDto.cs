@@ -7,6 +7,6 @@ public sealed record CreateBookDto(
     string Title,
     string Author,
     string Description,
-    string Genre,
+    IReadOnlyCollection<string> Genre,
     DateTime PublishDate
 );

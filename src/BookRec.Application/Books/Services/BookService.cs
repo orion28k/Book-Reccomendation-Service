@@ -33,6 +33,12 @@ public sealed class BookService : IBookService
        return books.Select(MapToDto).ToList();
     }
 
+    public async Task<IReadOnlyList<BookDto>> GetByGenre(string genre)
+    {
+       var books = await _bookRepository.GetByGenreAsync(genre) ?? new List<Book>();
+       return books.Select(MapToDto).ToList();
+    }
+
     public async Task<IReadOnlyList<BookDto>> GetAllAsync()
     {
         var books = await _bookRepository.GetAllAsync() ?? new List<Book>();
@@ -56,6 +62,25 @@ public sealed class BookService : IBookService
         return id;
     }
 
+    public async Task<Guid> UpdateBook(CreateBookDto updateBookDto, Guid id)
+    {
+        var book = await _bookRepository.GetByIdAsync(id);
+        if (book is null)
+        {
+            throw new Exception("Book Not Found");
+        }
+
+        book.Title = updateBookDto.Title;
+        book.Author = updateBookDto.Author;
+        book.Description = updateBookDto.Description;
+        book.Genres = updateBookDto.Genre?.ToList() ?? new List<string>();
+        book.PublishDate = updateBookDto.PublishDate;
+        book.UpdatedAt = DateTime.UtcNow;
+
+        await _bookRepository.AddAsync(book);
+        return id;
+    }
+
     public async Task DeleteBook(Guid id)
     {
         var book = await _bookRepository.GetByIdAsync(id);
@@ -71,7 +96,7 @@ public sealed class BookService : IBookService
         book.Title,
         book.Author,
         book.Description,
-        book.Genre,
+        book.Genres,
         book.PublishDate
     );
 }

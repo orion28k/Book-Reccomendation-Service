@@ -83,4 +83,7 @@ app.MapDelete("/books/{id:guid}", async (IBookService service, Guid id) =>
     return Results.NoContent();
 });
 
+// User Endpoints
+
+
 app.Run();

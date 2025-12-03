@@ -8,5 +8,6 @@ public sealed record UpdateUserDto(
     string FirstName,
     string LastName,
     string Email,
-    IEnumerable<string> PreferredGenres
+    IEnumerable<string> PreferredGenres,
+    DateTime UpdatedAt
 );

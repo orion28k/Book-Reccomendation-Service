@@ -59,6 +59,24 @@ public sealed class UserService : IUserService
         return id;
     }
 
+    public async Task<Guid> UpdateUser(UpdateUserDto updateUserDto, Guid id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user is null)
+        {
+            throw new Exception("User Not Found");
+        }
+        user.Username = updateUserDto.Username;
+        user.FirstName = updateUserDto.FirstName;
+        user.LastName = updateUserDto.LastName;
+        user.Email = updateUserDto.Email;
+        user.PreferredGenres = updateUserDto.PreferredGenres.ToList();
+        user.UpdatedAt = updateUserDto.UpdatedAt;
+
+        await _userRepository.UpdateAsync(user);
+        return user.Id;
+    }
+
     public async Task UpdatePreferredGenresAsync(Guid id, IEnumerable<string> preferredGenres)
     {
         var user = await _userRepository.GetByIdAsync(id);
@@ -87,6 +105,6 @@ public sealed class UserService : IUserService
         user.LastName,
         user.Email,
         user.PreferredGenres,
-        user.createdAt
+        user.CreatedAt
     );
 }

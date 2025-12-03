@@ -29,13 +29,13 @@ public sealed class BookService : IBookService
 
     public async Task<IReadOnlyList<BookDto>> GetByAuthor(string author)
     {
-       var books = await _bookRepository.GetByAuthor(author) ?? Array.Empty<Book>();
+       var books = await _bookRepository.GetByAuthorAsync(author) ?? new List<Book>();
        return books.Select(MapToDto).ToList();
     }
 
     public async Task<IReadOnlyList<BookDto>> GetAllAsync()
     {
-        var books = await _bookRepository.GetAllAsync() ?? Array.Empty<Book>();
+        var books = await _bookRepository.GetAllAsync() ?? new List<Book>();
         return books.Select(MapToDto).ToList();
     }
 
@@ -52,7 +52,7 @@ public sealed class BookService : IBookService
             createBookDto.PublishDate
         );
 
-        await _bookRepository.AddBook(book);
+        await _bookRepository.AddAsync(book);
         return id;
     }
 
@@ -63,7 +63,7 @@ public sealed class BookService : IBookService
         {
             return;
         }
-        await _bookRepository.DeleteBook(book);
+        await _bookRepository.DeleteAsync(id);
     }
 
     private static BookDto MapToDto(Book book) => new BookDto(

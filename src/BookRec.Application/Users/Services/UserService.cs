@@ -55,7 +55,7 @@ public sealed class UserService : IUserService
             createUserDto.CreatedAt
         );
 
-        await _userRepository.AddUser(user);
+        await _userRepository.AddAsync(user);
         return id;
     }
 
@@ -67,7 +67,7 @@ public sealed class UserService : IUserService
             return;
         }
         user.updatePreferredGenres(preferredGenres);
-        await _userRepository.UpdateUser(user);
+        await _userRepository.UpdateAsync(user);
     }
 
     public async Task DeleteUser(Guid id)
@@ -77,7 +77,7 @@ public sealed class UserService : IUserService
         {
             return;
         }
-        await _userRepository.DeleteUser(user);
+        await _userRepository.DeleteAsync(id);
     }
 
     private static UserDto MapToDto(User user) => new UserDto(

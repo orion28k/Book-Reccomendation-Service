@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRec.Application.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRec.Infrastructure.Tests", "tests\BookRec.Infrastructure.Tests\BookRec.Infrastructure.Tests.csproj", "{58B96CB3-FB33-4B8E-96C9-3784DAB42BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRec.Api.Tests", "tests\BookRec.Api.Tests\BookRec.Api.Tests.csproj", "{61A65B81-60E6-4D24-AB05-4D1AE5CB2C26}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

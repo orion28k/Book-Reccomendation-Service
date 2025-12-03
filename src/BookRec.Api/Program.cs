@@ -29,6 +29,7 @@ builder.Services.AddInfrastructure(connString);
 // Application Services
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 
 var app = builder.Build();
 
@@ -83,7 +84,7 @@ app.MapGet("/books", async (IBookService service) =>
 app.MapPost("/books", async (IBookService service, CreateBookDto dto) =>
 {
     var id = await service.AddBook(dto);
-    return Results.Created($"/books/{id}", new {id});
+    return Results.Created($"/books/{id}", new { id });
 });
 
 app.MapPut("/books/{id:guid}", async (IBookService service, UpdateBookDto dto, Guid id) =>
@@ -123,10 +124,29 @@ app.MapGet("/users/get-user-genres/{id}", async (IUserService service, Guid id) 
     return preferredGenres is null ? Results.NotFound() : Results.Ok(preferredGenres);
 });
 
+app.MapGet("/users/{id:guid}/recommendations", async (IRecommendationService recService, Guid id, int limit = 10) =>
+{
+    var recs = await recService.RecommendBooksForUserAsync(id, limit);
+    return recs is null ? Results.NotFound() : Results.Ok(recs);
+});
+
+app.MapPost("/users/{id:guid}/read/{bookId:guid}", async (IUserService userService, Guid id, Guid bookId) =>
+{
+    try
+    {
+        await userService.MarkBookAsReadAsync(id, bookId);
+        return Results.NoContent();
+    }
+    catch (Exception ex)
+    {
+        return Results.NotFound(new { error = ex.Message });
+    }
+});
+
 app.MapPost("/users", async (IUserService service, CreateUserDto dto) =>
 {
     var id = await service.AddUser(dto);
-    return Results.Created($"/users/{id}", new {id});
+    return Results.Created($"/users/{id}", new { id });
 });
 
 app.MapPut("/users/{id:guid}", async (IUserService service, UpdateUserDto dto, Guid id) =>

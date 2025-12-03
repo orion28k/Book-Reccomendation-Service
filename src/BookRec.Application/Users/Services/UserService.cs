@@ -41,6 +41,28 @@ public sealed class UserService : IUserService
         return user.PreferredGenres.ToList();
     }
 
+    public async Task<IReadOnlyList<Guid>> GetUserReadBookIdsAsync(Guid id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user is null)
+        {
+            return Array.Empty<Guid>();
+        }
+        return user.ReadBookIds.ToList();
+    }
+
+    public async Task MarkBookAsReadAsync(Guid userId, Guid bookId)
+    {
+        var user = await _userRepository.GetByIdAsync(userId);
+        if (user is null)
+        {
+            throw new Exception("User Not Found");
+        }
+
+        user.MarkBookAsRead(bookId);
+        await _userRepository.UpdateAsync(user);
+    }
+
     public async Task<Guid> AddUser(CreateUserDto createUserDto)
     {
         var id = Guid.NewGuid();
@@ -68,7 +90,7 @@ public sealed class UserService : IUserService
         }
         if (updateUserDto.Username is not null) user.Username = updateUserDto.Username;
         if (updateUserDto.FirstName is not null) user.FirstName = updateUserDto.FirstName;
-        if (updateUserDto.LastName is not null)user.LastName = updateUserDto.LastName;
+        if (updateUserDto.LastName is not null) user.LastName = updateUserDto.LastName;
         if (updateUserDto.Email is not null) user.Email = updateUserDto.Email;
         if (updateUserDto.PreferredGenres is not null) user.PreferredGenres = updateUserDto.PreferredGenres.ToList();
         user.UpdatedAt = updateUserDto.UpdatedAt;

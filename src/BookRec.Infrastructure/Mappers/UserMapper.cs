@@ -5,11 +5,12 @@ using BookRec.Domain.UserModel;
 using BookRec.Infrastructure.Dbos;
 
 namespace BookRec.Infrastructure.Mappers;
+
 public static class UserMapper
 {
     public static User ToDomain(UserDBO userDBO)
     {
-        return new User(
+        var user = new User(
             userDBO.Id,
             userDBO.Username,
             userDBO.FirstName,
@@ -18,8 +19,21 @@ public static class UserMapper
             string.IsNullOrEmpty(userDBO.PreferredGenres) ? new List<string>() : userDBO.PreferredGenres.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
             userDBO.createdAt
         );
+
+        if (!string.IsNullOrEmpty(userDBO.ReadBookIds))
+        {
+            var ids = userDBO.ReadBookIds
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => Guid.TryParse(s, out var g) ? g : Guid.Empty)
+                .Where(g => g != Guid.Empty)
+                .ToList();
+
+            user.UpdateReadBooks(ids);
+        }
+
+        return user;
     }
-    
+
     public static UserDBO ToDBO(User user)
     {
         return new UserDBO
@@ -30,6 +44,7 @@ public static class UserMapper
             LastName = user.LastName,
             Email = user.Email,
             PreferredGenres = string.Join(",", user.PreferredGenres),
+            ReadBookIds = user.ReadBookIds == null ? string.Empty : string.Join(",", user.ReadBookIds),
             createdAt = DateTime.UtcNow,
             updatedAt = DateTime.UtcNow
         };

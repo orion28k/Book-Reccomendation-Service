@@ -65,6 +65,12 @@ app.MapGet("/books/by-author/{author}", async (IBookService service, string auth
     return books is null ? Results.NotFound() : Results.Ok(books);
 });
 
+app.MapGet("/books/by-genre/{genre}", async (IBookService service, string genre) =>
+{
+    var books = await service.GetByGenre(genre);
+    return books is null ? Results.NotFound() : Results.Ok(books);
+});
+
 app.MapGet("/books", async (IBookService service) =>
 {
     var books = await service.GetAllAsync();
@@ -84,6 +90,29 @@ app.MapDelete("/books/{id:guid}", async (IBookService service, Guid id) =>
 });
 
 // User Endpoints
+app.MapGet("/users/{id:guid}", async (IUserService service, Guid id) =>
+{
+    var user = await service.GetByIdAsync(id);
+    // returns book in JSON format
+    return user is null ? Results.NotFound() : Results.Ok(user);
+});
 
+app.MapGet("/users/by-email/{email}", async (IUserService service, string email) =>
+{
+    var user = await service.GetByEmailAsync(email);
+    return user is null ? Results.NotFound() : Results.Ok(user);
+});
+
+app.MapGet("/books/by-username/{username}", async (IUserService service, string username) =>
+{
+    var user = await service.GetByUserAsync(username);
+    return user is null ? Results.NotFound() : Results.Ok(user);
+});
+
+app.MapGet("/users/get-user-genres/{id}", async (IUserService service, Guid id) =>
+{
+    var preferredGenres = await service.GetUserPreferredGenresAsync(id);
+    return preferredGenres is null ? Results.NotFound() : Results.Ok(preferredGenres);
+});
 
 app.Run();

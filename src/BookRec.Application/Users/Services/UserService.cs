@@ -63,6 +63,18 @@ public sealed class UserService : IUserService
         await _userRepository.UpdateAsync(user);
     }
 
+    public async Task UnmarkBookAsReadAsync(Guid userId, Guid bookId)
+    {
+        var user = await _userRepository.GetByIdAsync(userId);
+        if (user is null)
+        {
+            throw new Exception("User Not Found");
+        }
+
+        user.UnmarkBookAsRead(bookId);
+        await _userRepository.UpdateAsync(user);
+    }
+
     public async Task<Guid> AddUser(CreateUserDto createUserDto)
     {
         var id = Guid.NewGuid();

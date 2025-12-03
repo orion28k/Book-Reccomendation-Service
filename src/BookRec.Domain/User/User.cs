@@ -63,6 +63,12 @@ public class User : Entity
         _readBookIds = ids?.Where(g => g != Guid.Empty).Distinct().ToList() ?? new List<Guid>();
     }
 
+    public void UnmarkBookAsRead(Guid bookId)
+    {
+        if (bookId == Guid.Empty) return;
+        if (_readBookIds.Contains(bookId)) _readBookIds.Remove(bookId);
+    }
+
     public void addPreferredGenre(string genre)
     {
         if (string.IsNullOrWhiteSpace(genre))

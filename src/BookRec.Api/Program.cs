@@ -143,6 +143,33 @@ app.MapPost("/users/{id:guid}/read/{bookId:guid}", async (IUserService userServi
     }
 });
 
+app.MapGet("/users/{id:guid}/read", async (IUserService userService, IBookService bookService, Guid id) =>
+{
+    // return list of BookDto for the user's read books
+    var readIds = await userService.GetUserReadBookIdsAsync(id);
+    var books = new List<BookDto>();
+    foreach (var bid in readIds)
+    {
+        var b = await bookService.GetByIdAsync(bid);
+        if (b is not null) books.Add(b);
+    }
+
+    return Results.Ok(books);
+});
+
+app.MapDelete("/users/{id:guid}/read/{bookId:guid}", async (IUserService userService, Guid id, Guid bookId) =>
+{
+    try
+    {
+        await userService.UnmarkBookAsReadAsync(id, bookId);
+        return Results.NoContent();
+    }
+    catch (Exception ex)
+    {
+        return Results.NotFound(new { error = ex.Message });
+    }
+});
+
 app.MapPost("/users", async (IUserService service, CreateUserDto dto) =>
 {
     var id = await service.AddUser(dto);

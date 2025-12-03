@@ -66,11 +66,11 @@ public sealed class UserService : IUserService
         {
             throw new Exception("User Not Found");
         }
-        user.Username = updateUserDto.Username;
-        user.FirstName = updateUserDto.FirstName;
-        user.LastName = updateUserDto.LastName;
-        user.Email = updateUserDto.Email;
-        user.PreferredGenres = updateUserDto.PreferredGenres.ToList();
+        if (updateUserDto.Username is not null) user.Username = updateUserDto.Username;
+        if (updateUserDto.FirstName is not null) user.FirstName = updateUserDto.FirstName;
+        if (updateUserDto.LastName is not null)user.LastName = updateUserDto.LastName;
+        if (updateUserDto.Email is not null) user.Email = updateUserDto.Email;
+        if (updateUserDto.PreferredGenres is not null) user.PreferredGenres = updateUserDto.PreferredGenres.ToList();
         user.UpdatedAt = updateUserDto.UpdatedAt;
 
         await _userRepository.UpdateAsync(user);

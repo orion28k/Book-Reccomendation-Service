@@ -103,7 +103,7 @@ app.MapGet("/users/by-email/{email}", async (IUserService service, string email)
     return user is null ? Results.NotFound() : Results.Ok(user);
 });
 
-app.MapGet("/books/by-username/{username}", async (IUserService service, string username) =>
+app.MapGet("/users/by-username/{username}", async (IUserService service, string username) =>
 {
     var user = await service.GetByUserAsync(username);
     return user is null ? Results.NotFound() : Results.Ok(user);

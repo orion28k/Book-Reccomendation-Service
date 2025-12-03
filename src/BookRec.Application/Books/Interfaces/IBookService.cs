@@ -13,6 +13,6 @@ public interface IBookService
     Task<IReadOnlyList<BookDto>> GetByGenre(string genre);
     Task<IReadOnlyList<BookDto>> GetAllAsync();
     Task<Guid> AddBook(CreateBookDto book);
-    Task<Guid> UpdateBook(CreateBookDto book, Guid id);
+    Task<Guid> UpdateBook(UpdateBookDto book, Guid id);
     Task DeleteBook(Guid id);
 }

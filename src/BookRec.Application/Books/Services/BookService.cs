@@ -62,7 +62,7 @@ public sealed class BookService : IBookService
         return id;
     }
 
-    public async Task<Guid> UpdateBook(CreateBookDto updateBookDto, Guid id)
+    public async Task<Guid> UpdateBook(UpdateBookDto updateBookDto, Guid id)
     {
         var book = await _bookRepository.GetByIdAsync(id);
         if (book is null)
@@ -70,11 +70,11 @@ public sealed class BookService : IBookService
             throw new Exception("Book Not Found");
         }
 
-        book.Title = updateBookDto.Title;
-        book.Author = updateBookDto.Author;
-        book.Description = updateBookDto.Description;
-        book.Genres = updateBookDto.Genre?.ToList() ?? new List<string>();
-        book.PublishDate = updateBookDto.PublishDate;
+        if (updateBookDto.Title is not null) book.Title = updateBookDto.Title;
+        if (updateBookDto.Author is not null) book.Author = updateBookDto.Author;
+        if (updateBookDto.Description is not null) book.Description = updateBookDto.Description;
+        if (updateBookDto.Genre is not null) book.Genres = updateBookDto.Genre?.ToList() ?? new List<string>();
+        if (updateBookDto.PublishDate is not null) book.PublishDate = updateBookDto.PublishDate.Value;
         book.UpdatedAt = DateTime.UtcNow;
 
         await _bookRepository.AddAsync(book);

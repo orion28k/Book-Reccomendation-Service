@@ -1,10 +1,8 @@
-
-using System.Data.Common;
 using BookRec.Domain.BookModel;
-using BookRec.Domain.UserModel;
 using BookRec.Infrastructure.Dbos;
 
 namespace BookRec.Infrastructure.Mappers;
+
 public static class BookMapper
 {
     public static Book ToDomain(BookDBO bookDBO)
@@ -14,7 +12,9 @@ public static class BookMapper
             bookDBO.Title,
             bookDBO.Author,
             bookDBO.Description,
-            bookDBO.Genre,
+            string.IsNullOrEmpty(bookDBO.Genre) 
+                ? new List<string>() 
+                : bookDBO.Genre.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
             bookDBO.PublishDate
         );
     }
@@ -27,7 +27,7 @@ public static class BookMapper
             Title = book.Title,
             Author = book.Author,
             Description = book.Description,
-            Genre = book.Genre,
+            Genre = string.Join(",", book.Genres),
             PublishDate = book.PublishDate,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow

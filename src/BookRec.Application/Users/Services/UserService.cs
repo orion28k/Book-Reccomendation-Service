@@ -77,17 +77,6 @@ public sealed class UserService : IUserService
         return user.Id;
     }
 
-    public async Task UpdatePreferredGenresAsync(Guid id, IEnumerable<string> preferredGenres)
-    {
-        var user = await _userRepository.GetByIdAsync(id);
-        if (user is null)
-        {
-            return;
-        }
-        user.updatePreferredGenres(preferredGenres);
-        await _userRepository.UpdateAsync(user);
-    }
-
     public async Task DeleteUser(Guid id)
     {
         var user = await _userRepository.GetByIdAsync(id);

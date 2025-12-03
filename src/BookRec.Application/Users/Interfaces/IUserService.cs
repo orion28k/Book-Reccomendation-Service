@@ -10,6 +10,5 @@ public interface IUserService
     Task<IReadOnlyList<string>> GetUserPreferredGenresAsync(Guid id);
     Task<Guid> AddUser(CreateUserDto user);
     Task<Guid> UpdateUser(UpdateUserDto user, Guid id);
-    Task UpdatePreferredGenresAsync(Guid userId, IEnumerable<string> preferredGenres);
     Task DeleteUser(Guid id);
 }

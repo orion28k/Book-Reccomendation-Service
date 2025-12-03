@@ -1,6 +1,7 @@
 using BookRec.Application.Books.Dtos;
 using BookRec.Application.Books.Interface;
 using BookRec.Application.Books.Services;
+using BookRec.Application.Users.Dtos;
 using BookRec.Application.Users.Interface;
 using BookRec.Application.Users.Services;
 using BookRec.Domain.BookModel;
@@ -83,6 +84,12 @@ app.MapPost("/books", async (IBookService service, CreateBookDto dto) =>
     return Results.Created($"/books/{id}", new {id});
 });
 
+app.MapPut("/books/{id:guid}", async (IBookService service, UpdateBookDto dto, Guid id) =>
+{
+    var result = await service.UpdateBook(dto, id);
+    return result == Guid.Empty ? Results.NotFound() : Results.NoContent();
+});
+
 app.MapDelete("/books/{id:guid}", async (IBookService service, Guid id) =>
 {
     await service.DeleteBook(id);
@@ -113,6 +120,24 @@ app.MapGet("/users/get-user-genres/{id}", async (IUserService service, Guid id) 
 {
     var preferredGenres = await service.GetUserPreferredGenresAsync(id);
     return preferredGenres is null ? Results.NotFound() : Results.Ok(preferredGenres);
+});
+
+app.MapPost("/users", async (IUserService service, CreateUserDto dto) =>
+{
+    var id = await service.AddUser(dto);
+    return Results.Created($"/users/{id}", new {id});
+});
+
+app.MapPut("/users/{id:guid}", async (IUserService service, UpdateUserDto dto, Guid id) =>
+{
+    var result = await service.UpdateUser(dto, id);
+    return result == Guid.Empty ? Results.NotFound() : Results.NoContent();
+});
+
+app.MapDelete("/users/{id:guid}", async (IUserService service, Guid id) =>
+{
+    await service.DeleteUser(id);
+    return Results.NoContent();
 });
 
 app.Run();

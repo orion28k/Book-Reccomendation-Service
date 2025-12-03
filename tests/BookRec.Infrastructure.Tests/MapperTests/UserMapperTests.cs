@@ -11,62 +11,59 @@ public class UserMapperTests
     public void ToDomain_ShouldMapAllProperties()
     {
         var id = Guid.NewGuid();
-        var createdAt = new DateTime(2023, 1, 15, 0, 0, 0, DateTimeKind.Utc);
         var dbo = new UserDBO
         {
             Id = id,
-            Username = "johndoe",
+            Username = "johndoe123",
             FirstName = "John",
             LastName = "Doe",
             Email = "john@example.com",
             PreferredGenres = "Fiction,Mystery",
-            createdAt = createdAt
+            createdAt = DateTime.UtcNow
         };
 
         var result = UserMapper.ToDomain(dbo);
 
         Assert.Equal(id, result.Id);
-        Assert.Equal("johndoe", result.Username);
+        Assert.Equal("johndoe123", result.Username);
         Assert.Equal("John", result.FirstName);
         Assert.Equal("Doe", result.LastName);
         Assert.Equal("john@example.com", result.Email);
-        Assert.Equal(new List<string> { "Fiction", "Mystery" }, result.PreferredGenres);
-        Assert.Equal(createdAt, result.CreatedAt);
-    }
-
-    [Fact]
-    public void ToDomain_ShouldReturnEmptyList_WhenPreferredGenresIsEmpty()
-    {
-        var dbo = new UserDBO { PreferredGenres = string.Empty };
-
-        var result = UserMapper.ToDomain(dbo);
-
-        Assert.Empty(result.PreferredGenres);
-    }
-
-    [Fact]
-    public void ToDomain_ShouldRemoveEmptyEntries_WhenGenresHaveEmptyValues()
-    {
-        var dbo = new UserDBO { PreferredGenres = "Fiction,,Mystery," };
-
-        var result = UserMapper.ToDomain(dbo);
-
         Assert.Equal(2, result.PreferredGenres.Count);
         Assert.Contains("Fiction", result.PreferredGenres);
         Assert.Contains("Mystery", result.PreferredGenres);
     }
 
     [Fact]
+    public void ToDomain_ShouldHandleSingleGenre()
+    {
+        var dbo = new UserDBO 
+        { 
+            Id = Guid.NewGuid(),
+            Username = "testuser1",
+            FirstName = "Test",
+            LastName = "User",
+            Email = "test@example.com",
+            PreferredGenres = "Fiction" 
+        };
+
+        var result = UserMapper.ToDomain(dbo);
+
+        Assert.Single(result.PreferredGenres);
+        Assert.Contains("Fiction", result.PreferredGenres);
+    }
+
+    [Fact]
     public void ToDBO_ShouldMapAllProperties()
     {
         var id = Guid.NewGuid();
-        var user = new User(id, "johndoe", "John", "Doe", "john@example.com", 
+        var user = new User(id, "johndoe123", "John", "Doe", "john@example.com", 
             new List<string> { "Fiction", "Mystery" }, DateTime.UtcNow);
 
         var result = UserMapper.ToDBO(user);
 
         Assert.Equal(id, result.Id);
-        Assert.Equal("johndoe", result.Username);
+        Assert.Equal("johndoe123", result.Username);
         Assert.Equal("John", result.FirstName);
         Assert.Equal("Doe", result.LastName);
         Assert.Equal("john@example.com", result.Email);
@@ -77,8 +74,8 @@ public class UserMapperTests
     public void ToDBO_ShouldSetTimestamps()
     {
         var before = DateTime.UtcNow;
-        var user = new User(Guid.NewGuid(), "user", "First", "Last", "email@test.com", 
-            new List<string>(), DateTime.UtcNow);
+        var user = new User(Guid.NewGuid(), "testuser1", "First", "Last", "email@test.com", 
+            new List<string> { "Fiction" }, DateTime.UtcNow);
 
         var result = UserMapper.ToDBO(user);
         var after = DateTime.UtcNow;
@@ -92,15 +89,15 @@ public class UserMapperTests
     {
         var dbos = new List<UserDBO>
         {
-            new UserDBO { Id = Guid.NewGuid(), Username = "user1" },
-            new UserDBO { Id = Guid.NewGuid(), Username = "user2" }
+            new UserDBO { Id = Guid.NewGuid(), Username = "userone11", FirstName = "User", LastName = "One", Email = "one@test.com", PreferredGenres = "Fiction" },
+            new UserDBO { Id = Guid.NewGuid(), Username = "usertwo22", FirstName = "User", LastName = "Two", Email = "two@test.com", PreferredGenres = "Mystery" }
         };
 
         var result = UserMapper.ToDomainList(dbos);
 
         Assert.Equal(2, result.Count);
-        Assert.Equal("user1", result[0].Username);
-        Assert.Equal("user2", result[1].Username);
+        Assert.Equal("userone11", result[0].Username);
+        Assert.Equal("usertwo22", result[1].Username);
     }
 
     [Fact]

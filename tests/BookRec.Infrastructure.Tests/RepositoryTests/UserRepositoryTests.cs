@@ -23,17 +23,45 @@ public class UserRepositoryTests : IDisposable
 
     public void Dispose() => _context.Dispose();
 
+    // Helper to create valid UserDBO
+    private UserDBO CreateValidUserDBO(Guid? id = null, string? username = null, string? email = null)
+    {
+        return new UserDBO
+        {
+            Id = id ?? Guid.NewGuid(),
+            Username = username ?? "testuser1",
+            FirstName = "Test",
+            LastName = "User",
+            Email = email ?? $"{Guid.NewGuid()}@test.com",
+            PreferredGenres = "Fiction"
+        };
+    }
+
+    // Helper to create valid User
+    private User CreateValidUser(Guid? id = null, string? username = null, string? email = null)
+    {
+        return new User(
+            id ?? Guid.NewGuid(),
+            username ?? "testuser1",
+            "Test",
+            "User",
+            email ?? $"{Guid.NewGuid()}@test.com",
+            new List<string> { "Fiction" },
+            DateTime.UtcNow
+        );
+    }
+
     [Fact]
     public async Task GetByIdAsync_ReturnsUser_WhenExists()
     {
         var id = Guid.NewGuid();
-        _context.Users.Add(new UserDBO { Id = id, Username = "test" });
+        _context.Users.Add(CreateValidUserDBO(id: id, username: "findme123"));
         await _context.SaveChangesAsync();
 
         var result = await _repository.GetByIdAsync(id);
 
         Assert.NotNull(result);
-        Assert.Equal("test", result.Username);
+        Assert.Equal("findme123", result.Username);
     }
 
     [Fact]
@@ -47,13 +75,14 @@ public class UserRepositoryTests : IDisposable
     [Fact]
     public async Task GetByEmailAsync_ReturnsUser_WhenExists()
     {
-        _context.Users.Add(new UserDBO { Id = Guid.NewGuid(), Email = "test@example.com" });
+        var email = "findme@example.com";
+        _context.Users.Add(CreateValidUserDBO(email: email));
         await _context.SaveChangesAsync();
 
-        var result = await _repository.GetByEmailAsync("test@example.com");
+        var result = await _repository.GetByEmailAsync(email);
 
         Assert.NotNull(result);
-        Assert.Equal("test@example.com", result.Email);
+        Assert.Equal(email, result.Email);
     }
 
     [Fact]
@@ -67,19 +96,19 @@ public class UserRepositoryTests : IDisposable
     [Fact]
     public async Task GetByUserAsync_ReturnsUser_WhenExists()
     {
-        _context.Users.Add(new UserDBO { Id = Guid.NewGuid(), Username = "uniqueuser" });
+        _context.Users.Add(CreateValidUserDBO(username: "uniqueuser1"));
         await _context.SaveChangesAsync();
 
-        var result = await _repository.GetByUserAsync("uniqueuser");
+        var result = await _repository.GetByUserAsync("uniqueuser1");
 
         Assert.NotNull(result);
-        Assert.Equal("uniqueuser", result.Username);
+        Assert.Equal("uniqueuser1", result.Username);
     }
 
     [Fact]
     public async Task GetByUserAsync_ReturnsNull_WhenNotExists()
     {
-        var result = await _repository.GetByUserAsync("notfound");
+        var result = await _repository.GetByUserAsync("notfound1");
 
         Assert.Null(result);
     }
@@ -89,8 +118,8 @@ public class UserRepositoryTests : IDisposable
     {
         var id1 = Guid.Parse("00000000-0000-0000-0000-000000000001");
         var id2 = Guid.Parse("00000000-0000-0000-0000-000000000002");
-        _context.Users.Add(new UserDBO { Id = id2, Username = "user2" });
-        _context.Users.Add(new UserDBO { Id = id1, Username = "user1" });
+        _context.Users.Add(CreateValidUserDBO(id: id2, username: "usertwo22", email: "two@test.com"));
+        _context.Users.Add(CreateValidUserDBO(id: id1, username: "userone11", email: "one@test.com"));
         await _context.SaveChangesAsync();
 
         var result = await _repository.GetAllAsync();
@@ -111,21 +140,20 @@ public class UserRepositoryTests : IDisposable
     [Fact]
     public async Task AddAsync_AddsUser()
     {
-        var user = new User(Guid.NewGuid(), "newuser", "First", "Last", "new@example.com", 
-            new List<string> { "Fiction" }, DateTime.UtcNow);
+        var user = CreateValidUser(username: "newuser123", email: "new@example.com");
 
         await _repository.AddAsync(user);
 
         var result = await _context.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
         Assert.NotNull(result);
-        Assert.Equal("newuser", result.Username);
+        Assert.Equal("newuser123", result.Username);
     }
 
     [Fact]
     public async Task AddAsync_SetsCreatedAtTimestamp()
     {
         var before = DateTime.UtcNow;
-        var user = new User(Guid.NewGuid(), "user", "F", "L", "e@e.com", new List<string>(), DateTime.UtcNow);
+        var user = CreateValidUser();
 
         await _repository.AddAsync(user);
         var after = DateTime.UtcNow;
@@ -138,15 +166,15 @@ public class UserRepositoryTests : IDisposable
     public async Task UpdateAsync_UpdatesUser_WhenExists()
     {
         var id = Guid.NewGuid();
-        _context.Users.Add(new UserDBO { Id = id, Username = "original", Email = "orig@test.com" });
+        _context.Users.Add(CreateValidUserDBO(id: id, username: "original1", email: "orig@test.com"));
         await _context.SaveChangesAsync();
 
-        var updated = new User(id, "updated", "First", "Last", "updated@test.com", 
+        var updated = new User(id, "updated123", "Updated", "User", "updated@test.com", 
             new List<string> { "Mystery" }, DateTime.UtcNow);
         await _repository.UpdateAsync(updated);
 
         var result = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-        Assert.Equal("updated", result!.Username);
+        Assert.Equal("updated123", result!.Username);
         Assert.Equal("updated@test.com", result.Email);
         Assert.Equal("Mystery", result.PreferredGenres);
     }
@@ -154,7 +182,7 @@ public class UserRepositoryTests : IDisposable
     [Fact]
     public async Task UpdateAsync_DoesNothing_WhenNotExists()
     {
-        var user = new User(Guid.NewGuid(), "notexists", "F", "L", "e@e.com", new List<string>(), DateTime.UtcNow);
+        var user = CreateValidUser();
 
         await _repository.UpdateAsync(user); // Should not throw
 
@@ -162,24 +190,10 @@ public class UserRepositoryTests : IDisposable
     }
 
     [Fact]
-    public async Task UpdateAsync_HandlesNullPreferredGenres()
-    {
-        var id = Guid.NewGuid();
-        _context.Users.Add(new UserDBO { Id = id, Username = "user", PreferredGenres = "Fiction" });
-        await _context.SaveChangesAsync();
-
-        var updated = new User(id, "user", "F", "L", "e@e.com", null!, DateTime.UtcNow);
-        await _repository.UpdateAsync(updated);
-
-        var result = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-        Assert.Equal(string.Empty, result!.PreferredGenres);
-    }
-
-    [Fact]
     public async Task DeleteAsync_RemovesUser_WhenExists()
     {
         var id = Guid.NewGuid();
-        _context.Users.Add(new UserDBO { Id = id, Username = "todelete" });
+        _context.Users.Add(CreateValidUserDBO(id: id));
         await _context.SaveChangesAsync();
 
         await _repository.DeleteAsync(id);

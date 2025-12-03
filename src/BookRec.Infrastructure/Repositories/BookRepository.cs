@@ -1,4 +1,3 @@
-
 using BookRec.Domain.BookModel;
 using BookRec.Infrastructure.Mappers;
 using BookRec.Infrastructure.Persistence;
@@ -32,7 +31,7 @@ public class BookRepository : IBookRepository
 
     public async Task<List<Book>> GetByGenreAsync(string genre)
     {
-        var dbos = await _db.Books.Where(b => b.Genre == genre).ToListAsync();
+        var dbos = await _db.Books.Where(b => b.Genre.Contains(genre)).ToListAsync();
         return BookMapper.ToDomainList(dbos);
     }
 

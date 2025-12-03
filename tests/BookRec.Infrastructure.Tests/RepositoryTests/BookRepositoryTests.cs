@@ -86,16 +86,30 @@ public class BookRepositoryTests : IDisposable
     }
 
     [Fact]
-    public async Task GetByGenreAsync_ReturnsBooks_WhenExists()
+    public async Task GetByGenreAsync_ReturnsBooks_WhenGenreMatches()
     {
         _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Fiction", Title = "Book1", Author = "A", Description = "D" });
-        _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Fiction,Mystery", Title = "Book2", Author = "A", Description = "D" });
+        _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Mystery", Title = "Book2", Author = "A", Description = "D" });
         _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Romance", Title = "Book3", Author = "A", Description = "D" });
         await _context.SaveChangesAsync();
 
         var result = await _repository.GetByGenreAsync("Fiction");
 
-        Assert.Equal(2, result.Count);
+        Assert.Single(result);
+        Assert.Equal("Book1", result[0].Title);
+    }
+
+    [Fact]
+    public async Task GetByGenreAsync_ReturnsBooks_WhenGenreIsInList()
+    {
+        _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Fiction,Mystery", Title = "Book1", Author = "A", Description = "D" });
+        _context.Books.Add(new BookDBO { Id = Guid.NewGuid(), Genre = "Romance", Title = "Book2", Author = "A", Description = "D" });
+        await _context.SaveChangesAsync();
+
+        var result = await _repository.GetByGenreAsync("Mystery");
+
+        Assert.Single(result);
+        Assert.Equal("Book1", result[0].Title);
     }
 
     [Fact]

@@ -46,11 +46,13 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
-// Book Endpoints
+/// Book Endpoints
+/// <returns>
+/// book in JSON format
+/// </returns>
 app.MapGet("/books/{id:guid}", async (IBookService service, Guid id) =>
 {
     var book = await service.GetByIdAsync(id);
-    // returns book in JSON format
     return book is null ? Results.NotFound() : Results.Ok(book);
 });
 
@@ -100,7 +102,6 @@ app.MapDelete("/books/{id:guid}", async (IBookService service, Guid id) =>
 app.MapGet("/users/{id:guid}", async (IUserService service, Guid id) =>
 {
     var user = await service.GetByIdAsync(id);
-    // returns book in JSON format
     return user is null ? Results.NotFound() : Results.Ok(user);
 });
 

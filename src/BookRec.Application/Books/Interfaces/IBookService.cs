@@ -9,8 +9,8 @@ public interface IBookService
 {
     Task<BookDto?> GetByIdAsync(Guid id);
     Task<BookDto?> GetByTitleAsync(string title);
-    Task<IReadOnlyList<BookDto>> GetByAuthor(string author);
-    Task<IReadOnlyList<BookDto>> GetByGenre(string genre);
+    Task<IReadOnlyList<BookDto>> GetByAuthorAsync(string author);
+    Task<IReadOnlyList<BookDto>> GetByGenreAsync(string genre);
     Task<IReadOnlyList<BookDto>> GetAllAsync();
     Task<Guid> AddBook(CreateBookDto book);
     Task<Guid> UpdateBook(UpdateBookDto book, Guid id);

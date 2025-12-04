@@ -14,7 +14,7 @@ public sealed class BookService : IBookService
     {
         _bookRepository = bookRepository;
     }
-    
+
     public async Task<BookDto?> GetByIdAsync(Guid id)
     {
         var book = await _bookRepository.GetByIdAsync(id);
@@ -27,16 +27,16 @@ public sealed class BookService : IBookService
         return book is null ? null : MapToDto(book);
     }
 
-    public async Task<IReadOnlyList<BookDto>> GetByAuthor(string author)
+    public async Task<IReadOnlyList<BookDto>> GetByAuthorAsync(string author)
     {
-       var books = await _bookRepository.GetByAuthorAsync(author) ?? new List<Book>();
-       return books.Select(MapToDto).ToList();
+        var books = await _bookRepository.GetByAuthorAsync(author) ?? new List<Book>();
+        return books.Select(MapToDto).ToList();
     }
 
-    public async Task<IReadOnlyList<BookDto>> GetByGenre(string genre)
+    public async Task<IReadOnlyList<BookDto>> GetByGenreAsync(string genre)
     {
-       var books = await _bookRepository.GetByGenreAsync(genre) ?? new List<Book>();
-       return books.Select(MapToDto).ToList();
+        var books = await _bookRepository.GetByGenreAsync(genre) ?? new List<Book>();
+        return books.Select(MapToDto).ToList();
     }
 
     public async Task<IReadOnlyList<BookDto>> GetAllAsync()

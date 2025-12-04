@@ -45,7 +45,7 @@ public class Book : Entity
     /// Method's are set to private because once they are created they should 
     /// not be updated.
     /// </summary>
-    private void setTitle(string title)
+    public void setTitle(string title)
     {
         if (string.IsNullOrWhiteSpace(title))
         {
@@ -54,7 +54,7 @@ public class Book : Entity
         Title = title;
     }
 
-    private void setAuthor(string author)
+    public void setAuthor(string author)
     {
         if (string.IsNullOrWhiteSpace(author))
         {
@@ -108,7 +108,7 @@ public class Book : Entity
         }
     }
 
-    private void setDescription(string description)
+    public void setDescription(string description)
     {
         if (string.IsNullOrWhiteSpace(description))
         {

@@ -30,7 +30,7 @@ namespace BookRec.Application.Tests
             await service.MarkBookAsReadAsync(userId, bookId);
 
             // Assert
-            mockRepo.Verify(r => r.UpdateAsync(It.Is<User>(u => u.ReadBookIds.Contains(bookId))), Times.Once);
+            mockRepo.Verify(r => r.UpdateAsync(It.Is<User>(u => u.ReadBooks.Contains(bookId))), Times.Once);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace BookRec.Application.Tests
             var bookId = Guid.NewGuid();
 
             var user = new User(userId, "tester2", "First", "Last", "b@b.com", new[] { "Sci-Fi" }, DateTime.UtcNow);
-            user.UpdateReadBooks(new[] { bookId });
+            user.updateReadBooks(new[] { bookId });
 
             var mockRepo = new Mock<BookRec.Domain.UserModel.IUserRepository>();
             mockRepo.Setup(r => r.GetByIdAsync(userId)).ReturnsAsync(user);
@@ -53,7 +53,7 @@ namespace BookRec.Application.Tests
             await service.UnmarkBookAsReadAsync(userId, bookId);
 
             // Assert
-            mockRepo.Verify(r => r.UpdateAsync(It.Is<User>(u => !u.ReadBookIds.Contains(bookId))), Times.Once);
+            mockRepo.Verify(r => r.UpdateAsync(It.Is<User>(u => !u.ReadBooks.Contains(bookId))), Times.Once);
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace BookRec.Application.Tests
             var book2 = Guid.NewGuid();
 
             var user = new User(userId, "tester3", "First", "Last", "c@b.com", new[] { "Mystery" }, DateTime.UtcNow);
-            user.UpdateReadBooks(new[] { book1, book2 });
+            user.updateReadBooks(new[] { book1, book2 });
 
             var mockRepo = new Mock<BookRec.Domain.UserModel.IUserRepository>();
             mockRepo.Setup(r => r.GetByIdAsync(userId)).ReturnsAsync(user);

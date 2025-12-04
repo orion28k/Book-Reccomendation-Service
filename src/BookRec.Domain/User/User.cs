@@ -18,11 +18,11 @@ public class User : Entity
         get => _preferredGenres;
         set => _preferredGenres = value ?? new();
     }
-    private List<Guid> _readBookIds = new();
-    public List<Guid> ReadBookIds
+    private List<Guid> _readBooks = new();
+    public List<Guid> ReadBooks
     {
-        get => _readBookIds;
-        set => _readBookIds = value ?? new();
+        get => _readBooks;
+        set => _readBooks = value ?? new();
     }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
@@ -50,23 +50,23 @@ public class User : Entity
         }
     }
 
-    public void MarkBookAsRead(Guid bookId)
+    public void markBookAsRead(Guid bookId)
     {
         if (bookId == Guid.Empty) return;
-        if (!_readBookIds.Contains(bookId)) _readBookIds.Add(bookId);
+        if (!_readBooks.Contains(bookId)) _readBooks.Add(bookId);
     }
 
-    public bool HasRead(Guid bookId) => _readBookIds.Contains(bookId);
+    public bool hasRead(Guid bookId) => _readBooks.Contains(bookId);
 
-    public void UpdateReadBooks(IEnumerable<Guid> ids)
+    public void updateReadBooks(IEnumerable<Guid> ids)
     {
-        _readBookIds = ids?.Where(g => g != Guid.Empty).Distinct().ToList() ?? new List<Guid>();
+        _readBooks = ids?.Where(g => g != Guid.Empty).Distinct().ToList() ?? new List<Guid>();
     }
 
-    public void UnmarkBookAsRead(Guid bookId)
+    public void unmarkBookAsRead(Guid bookId)
     {
         if (bookId == Guid.Empty) return;
-        if (_readBookIds.Contains(bookId)) _readBookIds.Remove(bookId);
+        if (_readBooks.Contains(bookId)) _readBooks.Remove(bookId);
     }
 
     public void addPreferredGenre(string genre)

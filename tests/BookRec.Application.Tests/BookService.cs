@@ -76,7 +76,7 @@ public class BookServiceTests
         var books = new List<Book> { CreateValidBook(), CreateValidBook() };
         _mockRepo.Setup(r => r.GetByAuthorAsync("Test Author")).ReturnsAsync(books);
 
-        var result = await _service.GetByAuthor("Test Author");
+        var result = await _service.GetByAuthorAsync("Test Author");
 
         Assert.Equal(2, result.Count);
     }
@@ -86,7 +86,7 @@ public class BookServiceTests
     {
         _mockRepo.Setup(r => r.GetByAuthorAsync(It.IsAny<string>())).ReturnsAsync(new List<Book>());
 
-        var result = await _service.GetByAuthor("Unknown Author");
+        var result = await _service.GetByAuthorAsync("Unknown Author");
 
         Assert.Empty(result);
     }
@@ -97,7 +97,7 @@ public class BookServiceTests
         var books = new List<Book> { CreateValidBook(), CreateValidBook() };
         _mockRepo.Setup(r => r.GetByGenreAsync("Fiction")).ReturnsAsync(books);
 
-        var result = await _service.GetByGenre("Fiction");
+        var result = await _service.GetByGenreAsync("Fiction");
 
         Assert.Equal(2, result.Count);
     }
@@ -107,7 +107,7 @@ public class BookServiceTests
     {
         _mockRepo.Setup(r => r.GetByGenreAsync(It.IsAny<string>())).ReturnsAsync(new List<Book>());
 
-        var result = await _service.GetByGenre("Unknown Genre");
+        var result = await _service.GetByGenreAsync("Unknown Genre");
 
         Assert.Empty(result);
     }

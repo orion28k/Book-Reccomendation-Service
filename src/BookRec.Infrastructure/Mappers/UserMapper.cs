@@ -28,7 +28,7 @@ public static class UserMapper
                 .Where(g => g != Guid.Empty)
                 .ToList();
 
-            user.UpdateReadBooks(ids);
+            user.updateReadBooks(ids);
         }
 
         return user;
@@ -44,7 +44,7 @@ public static class UserMapper
             LastName = user.LastName,
             Email = user.Email,
             PreferredGenres = string.Join(",", user.PreferredGenres),
-            ReadBookIds = user.ReadBookIds == null ? string.Empty : string.Join(",", user.ReadBookIds),
+            ReadBookIds = user.ReadBooks == null ? string.Empty : string.Join(",", user.ReadBooks),
             createdAt = DateTime.UtcNow,
             updatedAt = DateTime.UtcNow
         };

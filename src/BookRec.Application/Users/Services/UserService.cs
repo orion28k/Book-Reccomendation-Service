@@ -48,7 +48,7 @@ public sealed class UserService : IUserService
         {
             return Array.Empty<Guid>();
         }
-        return user.ReadBookIds.ToList();
+        return user.ReadBooks.ToList();
     }
 
     public async Task MarkBookAsReadAsync(Guid userId, Guid bookId)
@@ -59,7 +59,7 @@ public sealed class UserService : IUserService
             throw new Exception("User Not Found");
         }
 
-        user.MarkBookAsRead(bookId);
+        user.markBookAsRead(bookId);
         await _userRepository.UpdateAsync(user);
     }
 
@@ -71,7 +71,7 @@ public sealed class UserService : IUserService
             throw new Exception("User Not Found");
         }
 
-        user.UnmarkBookAsRead(bookId);
+        user.unmarkBookAsRead(bookId);
         await _userRepository.UpdateAsync(user);
     }
 

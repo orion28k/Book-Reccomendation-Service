@@ -49,7 +49,7 @@ public class UserRepository : IUserRepository
         dbUser.LastName = user.LastName;
         dbUser.Email = user.Email;
         dbUser.PreferredGenres = user.PreferredGenres == null ? "" : string.Join(",", user.PreferredGenres);
-        dbUser.ReadBookIds = user.ReadBookIds == null ? string.Empty : string.Join(",", user.ReadBookIds);
+        dbUser.ReadBookIds = user.ReadBooks == null ? string.Empty : string.Join(",", user.ReadBooks);
         dbUser.updatedAt = DateTime.UtcNow;
 
         await _db.SaveChangesAsync();

@@ -65,13 +65,13 @@ app.MapGet("/books/by-title/{title}", async (IBookService service, string title)
 
 app.MapGet("/books/by-author/{author}", async (IBookService service, string author) =>
 {
-    var books = await service.GetByAuthor(author);
+    var books = await service.GetByAuthorAsync(author);
     return books is null ? Results.NotFound() : Results.Ok(books);
 });
 
 app.MapGet("/books/by-genre/{genre}", async (IBookService service, string genre) =>
 {
-    var books = await service.GetByGenre(genre);
+    var books = await service.GetByGenreAsync(genre);
     return books is null ? Results.NotFound() : Results.Ok(books);
 });
 

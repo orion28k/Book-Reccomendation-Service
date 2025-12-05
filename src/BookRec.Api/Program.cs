@@ -27,7 +27,6 @@ var connString = builder.Configuration.GetConnectionString("DefaultConnection")
                  ?? "Host=postgres;Port=5432;Database=bookrec;Username=postgres;Password=postgres";
 
 builder.Services.AddInfrastructure(connString);
-
 // Application Services
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService, UserService>();

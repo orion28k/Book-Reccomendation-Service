@@ -33,6 +33,12 @@ builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<MaterialDbContext>();
+    dbContext.Database.Migrate();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -187,5 +193,6 @@ app.MapDelete("/users/{id:guid}", async (IUserService service, Guid id) =>
     await service.DeleteUser(id);
     return Results.NoContent();
 });
+
 
 app.Run();

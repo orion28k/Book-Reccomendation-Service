@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var connString = builder.Configuration.GetConnectionString("DefaultConnection")
-                 ?? "Host=localhost;Port=5432;Database=bookrec;Username=postgres;Password=postgres";
+                 ?? "Host=postgres;Port=5432;Database=bookrec;Username=postgres;Password=postgres";
 
 builder.Services.AddInfrastructure(connString);
 

@@ -6,6 +6,8 @@ using BookRec.Application.Users.Interface;
 using BookRec.Application.Users.Services;
 using BookRec.Domain.BookModel;
 using BookRec.Infrastructure;
+using BookRec.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +37,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<MaterialDbContext>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
 }
 

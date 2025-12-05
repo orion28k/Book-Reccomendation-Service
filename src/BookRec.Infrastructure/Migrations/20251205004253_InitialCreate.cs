@@ -39,6 +39,7 @@ namespace BookRec.Infrastructure.Migrations
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     PreferredGenres = table.Column<string>(type: "text", nullable: false),
+                    ReadBookIds = table.Column<string>(type: "text", nullable: false),
                     createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

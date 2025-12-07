@@ -1,0 +1,37 @@
+name: Docker Build Test
+
+# Trigger workflow on push or PR to this branch
+on:
+  push:
+    branches: [ github-actions-cicd ]
+  pull_request:
+    branches: [ github-actions-cicd ]
+
+jobs:
+  test-docker:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      # Step 1: Checkout the repo so we have access to the code
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Step 2: Build the Docker image from the Dockerfile in the repo
+      - name: Build Docker image
+        run: docker build -t bookrec .
+
+      # Step 3: Run the Docker container in detached mode, exposing port 8080
+      - name: Run container
+        run: docker run -d -p 8080:8080 --name bookrec bookrec
+
+      # Step 4: Wait a few seconds to ensure the ASP.NET API is fully started
+      - name: Wait for app startup
+        run: sleep 10
+
+      # Step 5: Test that the API endpoint is reachable
+      - name: Test API endpoint
+        run: curl http://localhost:8080
+
+      # Step 6: Stop the Docker container to clean up
+      - name: Stop container
+        run: docker stop bookrec
